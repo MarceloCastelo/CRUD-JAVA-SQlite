@@ -11,8 +11,13 @@ public class Main {
 
     public static void main(String[] args) {
         PessoaDAO pessoaDAO = new PessoaDAO();
+
         DbConnection conexao = new DbConnection();
+
         Scanner scanner = new Scanner(System.in);
+
+        GestaoPessoas gestaoPessoas = new GestaoPessoas(pessoaDAO, scanner);
+        
         boolean continuar = true;
 
        Connection connection = conexao.getConnect();
@@ -28,16 +33,16 @@ public class Main {
             int opcao = scanner.nextInt();
             switch (opcao) {
                 case 1:
-                    cadastrarPessoa(pessoaDAO, scanner);
+                    gestaoPessoas.cadastrarPessoa();
                     break;
                 case 2:
-                    atualizarPessoa(pessoaDAO, scanner);
+                    gestaoPessoas.atualizarPessoa();
                     break;
                 case 3:
-                    deletarPessoa(pessoaDAO, scanner);
+                    gestaoPessoas.deletarPessoa();
                     break;
                 case 4:
-                    pesquisarPorNome(pessoaDAO, scanner);
+                    gestaoPessoas.pesquisarPorNome();
                     break;
                 case 5:
                     continuar = false;
@@ -50,37 +55,6 @@ public class Main {
         pessoaDAO.close();
         scanner.close();
         System.out.println("Encerrando o programa.");
-    }
-
-    private static void cadastrarPessoa(PessoaDAO pessoaDAO, Scanner scanner) {
-        System.out.println("Digite o nome:");
-        String nome = scanner.next();
-        System.out.println("Digite o email:");
-        String email = scanner.next();
-        Pessoa pessoa = new Pessoa(email, nome);
-        pessoaDAO.cadastrarPessoa(pessoa);
-    }
-
-    private static void atualizarPessoa(PessoaDAO pessoaDAO, Scanner scanner) {
-        System.out.println("Digite o email da pessoa que deseja atualizar:");
-        String email = scanner.next();
-        System.out.println("Digite o novo nome:");
-        String nome = scanner.next();
-        Pessoa pessoa = new Pessoa(email, nome);
-        pessoaDAO.atualizarPessoa(pessoa);
-    }
-
-    private static void deletarPessoa(PessoaDAO pessoaDAO, Scanner scanner) {
-        System.out.println("Digite o email da pessoa que deseja deletar:");
-        String email = scanner.next();
-        pessoaDAO.deletarPessoa(email);
-    }
-
-    private static void pesquisarPorNome(PessoaDAO pessoaDAO, Scanner scanner) {
-        System.out.println("Digite o nome que deseja pesquisar:");
-        String nome = scanner.next();
-        System.out.println("Pessoas encontradas:");
-        pessoaDAO.pesquisarPessoasPorNome(nome).forEach(p -> System.out.println("Nome: " + p.getNome() + ", Email: " + p.getEmail()));
     }
 }
 

@@ -13,7 +13,6 @@ public class DbConnection implements IConexao {
 
         try {
 
-            String url = "jdbc:sqlite:crudjava.db"; 
             String url = "jdbc:sqlite:crudjava.db";
 
             conn = DriverManager.getConnection(url);
