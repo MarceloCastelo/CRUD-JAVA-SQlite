@@ -12,8 +12,8 @@ public class DbConnection implements IConexao {
         Connection conn = null;
 
         try {
-            // JDBC URL para o banco de dados SQLite
 
+            String url = "jdbc:sqlite:crudjava.db"; 
             String url = "jdbc:sqlite:crudjava.db";
 
             conn = DriverManager.getConnection(url);
