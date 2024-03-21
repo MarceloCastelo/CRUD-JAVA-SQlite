@@ -10,10 +10,8 @@ public class DbConnection {
         Connection conn = null;
 
         try {
-            // JDBC URL para o banco de dados SQLite
 
-            String url = "jdbc:sqlite:crudjava.db"; // Altere para o caminho do seu banco de dados
-            // Estabelecendo conexão com o banco de dados
+            String url = "jdbc:sqlite:crudjava.db"; 
 
             conn = DriverManager.getConnection(url);
 
