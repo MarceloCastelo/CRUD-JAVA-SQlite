@@ -5,16 +5,17 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import static org.example.DbConnection.connect;
+
 
 public class Main {
 
     public static void main(String[] args) {
         PessoaDAO pessoaDAO = new PessoaDAO();
+        DbConnection conexao = new DbConnection();
         Scanner scanner = new Scanner(System.in);
         boolean continuar = true;
 
-        connect();
+       Connection connection = conexao.getConnect();
 
         System.out.println("Bem vindo! Selecione uma opção");
         System.out.println("1. Cadastrar pessoa");

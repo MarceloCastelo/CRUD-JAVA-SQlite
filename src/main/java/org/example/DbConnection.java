@@ -4,16 +4,17 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DbConnection {
-    public static Connection connect() {
+public class DbConnection implements IConexao {
+
+    @Override
+    public Connection getConnect() {
 
         Connection conn = null;
 
         try {
             // JDBC URL para o banco de dados SQLite
 
-            String url = "jdbc:sqlite:crudjava.db"; // Altere para o caminho do seu banco de dados
-            // Estabelecendo conexão com o banco de dados
+            String url = "jdbc:sqlite:crudjava.db";
 
             conn = DriverManager.getConnection(url);
 
@@ -25,4 +26,5 @@ public class DbConnection {
         }
         return conn;
     }
+
 }

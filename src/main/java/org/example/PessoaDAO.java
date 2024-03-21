@@ -6,11 +6,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PessoaDAO {
+public class PessoaDAO implements IPessoaDAO {
     private Connection connection;
+    DbConnection conexao = new DbConnection();
 
     public PessoaDAO() {
-        this.connection = DbConnection.connect();
+        this.connection = conexao.getConnect();
     }
 
     public void close() {
